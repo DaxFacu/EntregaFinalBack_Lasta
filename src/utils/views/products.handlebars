@@ -1,0 +1,45 @@
+<div>
+  {{#each products}}
+    <div style="padding: 10px;">
+      <p>{{this.title}}</p>
+
+      <p>{{this.description}}</p>
+
+      <p>{{this.stock}}</p>
+
+      <p>{{this.price}}</p>
+
+      <div> {{! !button[Link Text](./link-target.html) }}</div>
+
+    </div>
+  {{/each}}
+  <hr />
+  <hr />
+  pagingCounte:
+  {{pagingCounter}}
+  totalPage:
+  {{totalPages}}
+
+  <hr />
+
+  {{#if hasPrevPage}}
+    <a
+      style="text-decoration: none"
+      href="http://localhost:8000/products?page={{prevPage}}"
+    > ⬅️ </a>
+  {{/if}}
+  {{page}}
+  {{#if hasNextPage}}
+    <a
+      style="text-decoration: none"
+      href="http://localhost:8000/products?page={{nextPage}}"
+    > ➡️</a>
+  {{/if}}
+
+  <hr />
+  <hr />
+  {{!-- {{#each links}}
+    <a href='{{this.href}}'>{{this.label}}</a>
+  {{/each}} --}}
+</div>
+<script src="./js/index.js"></script>
