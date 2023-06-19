@@ -20,21 +20,38 @@ viewsRouter.get("/realtimeproducts", (req, res) => {
 
 viewsRouter.get("/products", async (req, res) => {
   try {
-    const { page, limit, query, sort } = req.query;
+    const { page, limit, category, status, sort } = req.query;
 
+    var querySelect = undefined;
+    if (category) {
+      querySelect = { category: category };
+    } else if (status) {
+      querySelect = { status: status };
+    } else {
+      querySelect = undefined;
+    }
     const products = await ProductModel.paginate(
-      {},
+      { ...querySelect },
       {
         limit: limit || 10,
         page: page || 1,
-        filter: query || "",
-        sort: sort || "",
+        sort: { price: sort },
       }
     );
 
+    let product = products.docs.map((product) => {
+      return {
+        // id: product._id.toString(),
+        title: product.title,
+        description: product.description,
+        stock: product.stock,
+        price: product.price,
+      };
+    });
+
     res.render("products", {
-      // status: "success",
-      products: products,
+      status: "success",
+      product: product,
       pagingCounter: products.pagingCounter,
       totalPages: products.totalPages,
       prevPage: products.prevPage,

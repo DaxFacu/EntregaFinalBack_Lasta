@@ -1,5 +1,5 @@
 <div>
-  {{#each products}}
+  {{#each product}}
     <div style="padding: 10px;">
       <p>{{this.title}}</p>
 
@@ -9,7 +9,10 @@
 
       <p>{{this.price}}</p>
 
-      <div> {{! !button[Link Text](./link-target.html) }}</div>
+      <div>
+        <button onclick=""></button>
+        {{! !button[Link Text](./link-target.html) }}
+      </div>
 
     </div>
   {{/each}}
@@ -42,4 +45,4 @@
     <a href='{{this.href}}'>{{this.label}}</a>
   {{/each}} --}}
 </div>
-<script src="./js/index.js"></script>
+{{! <script src="./js/index.js"></script> }}

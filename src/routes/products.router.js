@@ -5,16 +5,23 @@ export const routerProducts = express.Router();
 
 routerProducts.get("/", async (req, res) => {
   try {
-    // const products = await productsService.getAllProducts();
-    const { page, limit, query, sort } = req.query;
+    const { page, limit, category, status, sort } = req.query;
 
+    var querySelect = undefined;
+    if (category) {
+      querySelect = { category: category };
+    } else if (status) {
+      querySelect = { status: status };
+    } else {
+      querySelect = undefined;
+    }
+    console.log(querySelect);
     const products = await ProductModel.paginate(
-      {},
+      { ...querySelect },
       {
         limit: limit || 10,
         page: page || 1,
-        filter: query || "",
-        sort: sort || "",
+        sort: { price: sort },
       }
     );
     return res.status(200).json({

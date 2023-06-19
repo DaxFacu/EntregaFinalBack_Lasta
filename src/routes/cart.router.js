@@ -66,26 +66,26 @@ routerCarts.get("/:cid", async (req, res) => {
   }
 });
 
-routerCarts.get("/:cid", async (req, res) => {
-  try {
-    const { cid, pid } = req.params;
+// routerCarts.get("/:cid", async (req, res) => {
+//   try {
+//     const { cid, pid } = req.params;
 
-    const getCart = await cartsService.findCart(cid);
+//     const getCart = await cartsService.findCart(cid);
 
-    return res.status(201).json({
-      status: "success",
-      msg: "Get cart",
-      data: getCart,
-    });
-  } catch (e) {
-    console.log(e);
-    return res.status(500).json({
-      status: "error",
-      msg: "something went wrong :(",
-      data: {},
-    });
-  }
-});
+//     return res.status(201).json({
+//       status: "success",
+//       msg: "Get cart",
+//       data: getCart,
+//     });
+//   } catch (e) {
+//     console.log(e);
+//     return res.status(500).json({
+//       status: "error",
+//       msg: "something went wrong :(",
+//       data: {},
+//     });
+//   }
+// });
 
 routerCarts.put("/:cid", async (req, res) => {
   try {

@@ -18,6 +18,7 @@ class CartsService {
 
   async updateCart(cid, pid) {
     const cartUpdated = await CartModel.updateOne({ _id: cid }, { pid });
+    return cartUpdated;
   }
 
   async deleteProduct(id) {
